@@ -15,7 +15,12 @@
     "checkJs": true,
     "isolatedModules": true,
 
-    "strict": true
+    "strict": true,
+
+    "typeRoots": [
+      "src/types",
+      "node_modules/@types"
+    ]
   },
   "include": ["src/**/*.d.ts", "src/**/*.ts", "src/**/*.js", "src/**/*.svelte"],
   "references": [{ "path": "./tsconfig.node.json" }]

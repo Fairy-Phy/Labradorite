@@ -19,6 +19,7 @@
     "vite": "^4.0.0"
   },
   "dependencies": {
+    "colorthief": "^2.3.2",
     "ress": "^5.0.2",
     "smooth-scrollbar": "^8.8.1",
     "svelte-inline-svg": "^1.2.0"
