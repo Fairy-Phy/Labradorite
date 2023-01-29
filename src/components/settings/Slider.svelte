@@ -8,9 +8,11 @@
 	export let title = "";
 
 	export let unit = "";
+
+	export let main_color_hue: number;
 </script>
 
-<div>
-	<p>{title}  {current_value}{unit}</p>
-	<input type="range" name="" id="" bind:value={current_value} min={min_value} max={max_value} step={step_value} />
+<div class="slider-main">
+	<p><span>{title}</span><span>{current_value}{unit}</span></p>
+	<input style="--slider-main-color: hsl({main_color_hue}, 100%, 70%);" type="range" name="" id="" bind:value={current_value} min={min_value} max={max_value} step={step_value} />
 </div>

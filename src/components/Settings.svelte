@@ -8,31 +8,7 @@
 	import SmoothScrollbar from '../utils/SmoothScrollbar.svelte';
 
 	import ColorThief from "colorthief";
-	const rgb_to_hue = (r: number, g: number, b: number) => {
-		r /= 255;
-		g /= 255;
-		b /= 255;
-		const max = Math.max(r, g, b), min = Math.min(r, g, b);
-
-		let h: number = 0;
-		if (max !== min) {
-			const d = max - min;
-			switch (max) {
-				case r:
-					h = (g - b) / d + (g < b ? 6 : 0);
-					break;
-				case g:
-					h = (b - r) / d + 2;
-					break;
-				case b:
-					h = (r - g) / d + 4;
-					break;
-			}
-			h /= 6;
-		}
-
-		return Math.round(h * 360);
-	};
+	import rgb_to_hue from "../utils/rgb-to-hue";
 	const get_color = (image_element: HTMLImageElement) => {
 		const color_thief = new ColorThief();
 		return rgb_to_hue(...color_thief.getColor(image_element));
@@ -46,13 +22,17 @@
 	let show_icon_element: Element;
 	let menu_element: Element;
 
-	$: if (is_show) {
+	export const update_color_hue = () => {
 		if (background_image_element) {
+			console.log("color change...");
 			background_hue = get_color(background_image_element);
 		}
 		else {
 			console.error("could not load image...");
 		}
+	};
+	$: if (is_show) {
+		update_color_hue();
 	}
 
 	const toggle_show = () => {
@@ -85,6 +65,17 @@
 			toggle_show();
 		}
 	};
+
+	let images: string[] = [
+		"/test-bg.png",
+		"/nahi.png",
+		"/ki.png",
+		"/pink.png"
+	];
+
+	let selected_index = 0;
+	export let background_src: string;
+	$: background_src = images[selected_index];
 </script>
 
 <svelte:window on:click={non_target_close} />
@@ -97,28 +88,7 @@
 			<h2>Main Settings</h2>
 			<MainSettings bind:color_hue={background_hue} />
 			<h2>Background Settings</h2>
-			<BackgroundImages />
-			<div style="margin: 0 1%; display: flex; flex-wrap: wrap; gap: 1%;">
-				<img src="/test-bg.png" alt="" style="margin-top: 1%; width: 49%;">
-				<img src="/test-bg.png" alt="" style="margin-top: 1%; width: 49%;">
-				<img src="/test-bg.png" alt="" style="margin-top: 1%; width: 49%;">
-				<img src="/test-bg.png" alt="" style="margin-top: 1%; width: 49%;">
-				<img src="/test-bg.png" alt="" style="margin-top: 1%; width: 49%;">
-				<img src="/test-bg.png" alt="" style="margin-top: 1%; width: 49%;">
-				<img src="/test-bg.png" alt="" style="margin-top: 1%; width: 49%;">
-				<img src="/test-bg.png" alt="" style="margin-top: 1%; width: 49%;">
-				<img src="/test-bg.png" alt="" style="margin-top: 1%; width: 49%;">
-				<img src="/test-bg.png" alt="" style="margin-top: 1%; width: 49%;">
-				<img src="/test-bg.png" alt="" style="margin-top: 1%; width: 49%;">
-				<img src="/test-bg.png" alt="" style="margin-top: 1%; width: 49%;">
-				<img src="/test-bg.png" alt="" style="margin-top: 1%; width: 49%;">
-				<img src="/test-bg.png" alt="" style="margin-top: 1%; width: 49%;">
-				<img src="/test-bg.png" alt="" style="margin-top: 1%; width: 49%;">
-				<img src="/test-bg.png" alt="" style="margin-top: 1%; width: 49%;">
-				<img src="/test-bg.png" alt="" style="margin-top: 1%; width: 49%;">
-				<img src="/test-bg.png" alt="" style="margin-top: 1%; width: 49%;">
-				<img src="/test-bg.png" alt="" style="margin-top: 1%; width: 49%;">
-			</div>
+			<BackgroundImages bind:selected_index images={images} bind:color_hue={background_hue} />
 		</SmoothScrollbar>
 		<div class="setting-icon setting-close" in:icon_animation={400} out:icon_animation={0}>
 			<InlineSVG src={setting_close_icon} on:click={toggle_show} />
