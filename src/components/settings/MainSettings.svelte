@@ -1,16 +1,14 @@
 <script lang="ts">
+    import type MainConfig from "../../config/main-config";
     import Checkbox from "./Checkbox.svelte";
-    import Slider from "./Slider.svelte";
 
-	export let color_hue: number;
+	export let main_config: MainConfig;
+	export let color: number;
 </script>
 
 <div class="main-settings-panel">
-	<Checkbox bind:main_color_hue={color_hue} description="Test" />
-	<Checkbox bind:main_color_hue={color_hue} description="Test two" />
-	<Checkbox bind:main_color_hue={color_hue} description="Test three" />
-	<Checkbox bind:main_color_hue={color_hue} description="Test four" />
-	<Slider bind:main_color_hue={color_hue} title="Test" unit="px" min_value={0} max_value={1} step_value={0.01} />
-	<Slider bind:main_color_hue={color_hue} title="Test two" unit="%" min_value={0} max_value={1} step_value={0.01} />
-	<Slider bind:main_color_hue={color_hue} title="Test three" unit="" min_value={0} max_value={1} step_value={0.01} />
+	<Checkbox bind:color bind:checkbox_data={main_config.test1} />
+	<Checkbox bind:color bind:checkbox_data={main_config.test2} />
+	<Checkbox bind:color bind:checkbox_data={main_config.test3} />
+	<Checkbox bind:color bind:checkbox_data={main_config.test4} />
 </div>

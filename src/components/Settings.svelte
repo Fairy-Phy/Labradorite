@@ -6,34 +6,13 @@
     import BackgroundImages from './settings/BackgroundImages.svelte';
     import MainSettings from './settings/MainSettings.svelte';
 	import SmoothScrollbar from '../utils/SmoothScrollbar.svelte';
+    import type ThemeConfig from '../config/theme-config';
 
-	import ColorThief from "colorthief";
-	import rgb_to_hue from "../utils/rgb-to-hue";
-	const get_color = (image_element: HTMLImageElement) => {
-		const color_thief = new ColorThief();
-		return rgb_to_hue(...color_thief.getColor(image_element));
-	};
-
-	export let background_image_element: HTMLImageElement;
-	let background_hue = 0;
+	export let config: ThemeConfig;
 
 	let is_show = false;
-
 	let show_icon_element: Element;
 	let menu_element: Element;
-
-	export const update_color_hue = () => {
-		if (background_image_element) {
-			console.log("color change...");
-			background_hue = get_color(background_image_element);
-		}
-		else {
-			console.error("could not load image...");
-		}
-	};
-	$: if (is_show) {
-		update_color_hue();
-	}
 
 	const toggle_show = () => {
 		is_show = !is_show;
@@ -65,17 +44,6 @@
 			toggle_show();
 		}
 	};
-
-	let images: string[] = [
-		"/test-bg.png",
-		"/nahi.png",
-		"/ki.png",
-		"/pink.png"
-	];
-
-	let selected_index = 0;
-	export let background_src: string;
-	$: background_src = images[selected_index];
 </script>
 
 <svelte:window on:click={non_target_close} />
@@ -86,9 +54,9 @@
 		<SmoothScrollbar custom_class="setting-panel-scroll">
 			<h1>Settings</h1>
 			<h2>Main Settings</h2>
-			<MainSettings bind:color_hue={background_hue} />
+			<MainSettings bind:main_config={config.main_config} bind:color={config.color_hue} />
 			<h2>Background Settings</h2>
-			<BackgroundImages bind:selected_index images={images} bind:color_hue={background_hue} />
+			<BackgroundImages bind:config />
 		</SmoothScrollbar>
 		<div class="setting-icon setting-close" in:icon_animation={400} out:icon_animation={0}>
 			<InlineSVG src={setting_close_icon} on:click={toggle_show} />

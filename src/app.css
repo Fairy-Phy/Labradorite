@@ -61,8 +61,21 @@ p, .checkbox-label span {
 
 .setting-icon {
 	fill: white;
-
 	position: fixed;
+	transition: fill 400ms ease;
+	-webkit-transition: fill 400ms ease;
+	-moz-transition: fill 400ms ease;
+	-ms-transition: fill 400ms ease;
+	-o-transition: fill 400ms ease;
+}
+
+.setting-icon:hover {
+	fill: #aaa;
+	transition: fill 400ms ease;
+	-webkit-transition: fill 400ms ease;
+	-moz-transition: fill 400ms ease;
+	-ms-transition: fill 400ms ease;
+	-o-transition: fill 400ms ease;
 }
 
 .setting-open {
@@ -264,9 +277,7 @@ p, .checkbox-label span {
 	cursor: pointer;
 	-webkit-appearance: none;
 }
-.slider-main input::-webkit-slider-thumb {
-	-webkit-appearance: none;
-}
+
 .slider-main input:focus {
 	outline: none;
 }
@@ -284,11 +295,11 @@ p, .checkbox-label span {
 	cursor: pointer;
 	border: 2px solid transparent;
 
-	transition: all 200ms ease;
-	-webkit-transition: all 200ms ease;
-	-moz-transition: all 200ms ease;
-	-ms-transition: all 200ms ease;
-	-o-transition: all 200ms ease;
+	transition: all 200ms ease, background-color 500ms ease;
+	-webkit-transition: all 200ms ease, background-color 500ms ease;
+	-moz-transition: all 200ms ease, background-color 500ms ease;
+	-ms-transition: all 200ms ease, background-color 500ms ease;
+	-o-transition: all 200ms ease, background-color 500ms ease;
 }
 .slider-main input:hover::-webkit-slider-thumb {
 	border-color: hsla(0, 0%, 100%, 0.6);
@@ -379,11 +390,11 @@ p, .checkbox-label span {
 .bg-content[class*="selected-bg"] .content-left-right:before,
 .bg-content[class*="selected-bg"] .content-left-right:after {
 	transform: translate3d(0, 0, 0);
-	transition: background-color 0.5s ease, transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
-	-webkit-transition: background-color 0.5s ease, transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
-	-moz-transition: background-color 0.5s ease, transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
-	-ms-transition: background-color 0.5s ease, transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
-	-o-transition: background-color 0.5s ease, transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+	transition: background-color 500ms ease, transform 600ms cubic-bezier(.5,.25,0,1);
+	-webkit-transition: background-color 500ms ease, transform 600ms cubic-bezier(.5,.25,0,1);
+	-moz-transition: background-color 500ms ease, transform 600ms cubic-bezier(.5,.25,0,1);
+	-ms-transition: background-color 500ms ease, transform 600ms cubic-bezier(.5,.25,0,1);
+	-o-transition: background-color 500ms ease, transform 600ms cubic-bezier(.5,.25,0,1);
 }
 
 .content-left-right:before,
@@ -399,11 +410,11 @@ p, .checkbox-label span {
 	background-color: var(--bg-content-color);
 	/*background-color: hsl(209, 100%, 54%);*/
 
-	transition: background-color 0.5s ease, transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
-	-webkit-transition: background-color 0.5s ease, transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
-	-moz-transition: background-color 0.5s ease, transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
-	-ms-transition: background-color 0.5s ease, transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
-	-o-transition: background-color 0.5s ease, transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+	transition: background-color 500ms ease, transform 600ms cubic-bezier(.5,.25,0,1);
+	-webkit-transition: background-color 500ms ease, transform 600ms cubic-bezier(.5,.25,0,1);
+	-moz-transition: background-color 500ms ease, transform 600ms cubic-bezier(.5,.25,0,1);
+	-ms-transition: background-color 500ms ease, transform 600ms cubic-bezier(.5,.25,0,1);
+	-o-transition: background-color 500ms ease, transform 600ms cubic-bezier(.5,.25,0,1);
 }
 
 .content-left-right:before, .content-left-right:after {

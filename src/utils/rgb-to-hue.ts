@@ -1,4 +1,4 @@
-export default function(r: number, g: number, b: number) {
+export default function rgb_to_hue(r: number, g: number, b: number) {
 	r /= 255;
 	g /= 255;
 	b /= 255;
