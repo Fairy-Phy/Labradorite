@@ -28,6 +28,8 @@ p, .checkbox-label span {
 	font-size: 20px;
 }
 
+/* Background */
+
 .bg {
 	display: block;
 	width: 100%;
@@ -58,6 +60,8 @@ p, .checkbox-label span {
 	-ms-transition: all var(--fade-duration) ease-in-out;
 	-o-transition: all var(--fade-duration) ease-in-out;
 }
+
+/* Settings */
 
 .setting-icon {
 	fill: white;
@@ -461,4 +465,88 @@ p, .checkbox-label span {
 	-moz-transform: translate3d(0, -105%, 0);
 	-ms-transform: translate3d(0, -105%, 0);
 	-o-transform: translate3d(0, -105%, 0);
+}
+
+/* Status */
+
+.status-bar {
+	position: fixed;
+	z-index: 5;
+
+	width: 100%;
+}
+
+.status-bar svg {
+	fill: #fff;
+}
+
+.monitor-brightness, .battery-percent {
+	position: absolute;
+
+	margin: 3px 6px;
+}
+
+.monitor-brightness span, .battery-percent span {
+	margin-left: 3px;
+
+	vertical-align: top;
+
+	font-weight: bold;
+	font-size: 16px;
+}
+
+.monitor-brightness {
+	left: 0;
+}
+
+.monitor-brightness svg {
+	height: 17px;
+}
+
+.battery-percent {
+	right: 0;
+	text-align: right;
+}
+
+.battery-percent svg {
+	height: 19px;
+}
+
+/* Clock */
+
+.clock {
+	position: fixed;
+	z-index: 0;
+
+	top: 50%;
+	left: 50%;
+
+	margin: 0;
+	margin-right: -50%;
+
+	transform: translate(-50%, -50%);
+	-webkit-transform: translate(-50%, -50%);
+	-moz-transform: translate(-50%, -50%);
+	-ms-transform: translate(-50%, -50%);
+	-o-transform: translate(-50%, -50%);
+
+	text-align: center;
+	vertical-align: middle;
+}
+
+.clock p {
+	font-family: 'LaongLaan';
+	font-style: normal;
+	font-weight: 400;
+	font-size: 95px;
+	line-height: 136px;
+}
+
+.clock p span {
+	font-family: 'Heorot';
+}
+
+.clock p span[class*="time-colon"] {
+	position: relative;
+	bottom: 10px;
 }

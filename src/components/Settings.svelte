@@ -3,10 +3,10 @@
 	import InlineSVG from "svelte-inline-svg";
 	import setting_icon from "../assets/setting-button.svg";
 	import setting_close_icon from "../assets/setting-close-button.svg";
-    import BackgroundImages from './settings/BackgroundImages.svelte';
-    import MainSettings from './settings/MainSettings.svelte';
+	import BackgroundImages from './settings/BackgroundImages.svelte';
+	import MainSettings from './settings/MainSettings.svelte';
 	import SmoothScrollbar from '../utils/SmoothScrollbar.svelte';
-    import type ThemeConfig from '../config/theme-config';
+	import type ThemeConfig from '../config/theme-config';
 
 	export let config: ThemeConfig;
 
