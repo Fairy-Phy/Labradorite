@@ -24,7 +24,7 @@
 		return {
 			duration: 500,
 			easing: quintOut,
-			css: (time: number) => `opacity: ${time}; transform: translateX(${-current_width + (time * current_width)}px)`
+			css: (time: number) => `opacity: ${time}; transform: translate3d(${-current_width + (time * current_width)}px, 0, 0)`
 		};
 	};
 

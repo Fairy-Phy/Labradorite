@@ -1,24 +1,15 @@
 <script lang="ts">
-	import Background from "../components/Background.svelte";
+	import Status from "../components/Status.svelte";
+    import Power from "../components/Power.svelte";
 	import Settings from "../components/Settings.svelte";
-	import ThemeConfig from "../config/theme-config";
+    import type ThemeConfig from "../config/theme-config";
 
-	let config: ThemeConfig = new ThemeConfig([
-		"test-bg.png",
-		"nahi.png",
-		"ki.png",
-		"pink.png",
-		"test-bg.png",
-		"test-bg.png",
-		"test-bg.png",
-		"test-bg.png",
-		"test-bg.png",
-		"test-bg.png",
-		"test-bg.png",
-	]);
+	export let config: ThemeConfig;
+	export let base_component: Element;
 </script>
 
-<div>
-	<Background bind:config />
+<div bind:this={base_component}>
 	<Settings bind:config />
+	<Power />
+	<Status screen_light={57} battery={85.1} />
 </div>

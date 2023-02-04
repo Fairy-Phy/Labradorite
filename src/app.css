@@ -550,3 +550,192 @@ p, .checkbox-label span {
 	position: relative;
 	bottom: 10px;
 }
+
+/* Power */
+
+.power {
+	position: fixed;
+	z-index: 1;
+
+	right: 0;
+	bottom: 0;
+}
+
+.power svg {
+	fill: #fff;
+}
+
+.power-button {
+	position: absolute;
+
+	right: 0;
+	bottom: 0;
+
+	margin: 25px;
+	padding: 5px;
+
+	text-align: right;
+}
+
+.power-button:hover {
+	background-color: #fff4;
+}
+
+.power-button svg {
+	vertical-align: middle;
+	width: 25px;
+}
+
+.power-panel {
+	position: absolute;
+	overflow: hidden;
+
+	right: 0;
+	bottom: 80px;
+
+	width: 160px;
+	background-color: #323232;
+}
+
+.power-panel div {
+	padding: 9px 10px;
+}
+
+.power-panel div:hover {
+	background-color: #505050;
+}
+
+.sleep-pad svg {
+	padding: 0 2.5px;
+}
+
+.power-panel div svg {
+	height: 20px;
+	vertical-align: middle;
+}
+
+.power-panel div span {
+	margin-left: 10px;
+
+	font-weight: 500;
+	font-size: 16px;
+	vertical-align: middle;
+}
+
+/* Logging */
+
+.logging-panel {
+	position: fixed;
+	z-index: 0;
+
+	top: 50%;
+	left: 50%;
+
+	margin: 0;
+	margin-right: -50%;
+
+	transform: translate(-50%, -50%);
+	-webkit-transform: translate(-50%, -50%);
+	-moz-transform: translate(-50%, -50%);
+	-ms-transform: translate(-50%, -50%);
+	-o-transform: translate(-50%, -50%);
+
+	text-align: left;
+}
+
+.logging-panel div {
+	position: relative;
+	z-index: 0;
+	width: 300px;
+	height: 36px;
+	overflow: hidden;
+
+	background: rgba(255, 255, 255, 0.7);
+	border: 3px solid rgba(45, 45, 45, 0.7);
+	border-radius: 97px;
+
+}
+
+.logging-panel div span {
+	position: absolute;
+	z-index: 1;
+	display: inline-block;
+	width: 270px;
+	height: 100%;
+
+	margin: 1px 12px;
+
+	color: #232323;
+	font-weight: 500;
+	font-size: 20px;
+	white-space: nowrap;
+	overflow: hidden;
+	
+	vertical-align: middle;
+	
+	caret-color: transparent;
+	letter-spacing: 0.05em;
+}
+
+.logging-panel div span:focus {
+	outline: 0;
+}
+
+.logging-panel div span::selection {
+	color: #e8e8e8;
+	background-color: #0007;
+}
+
+@keyframes caret-animate {
+	0% {
+		opacity: 1;
+	}
+	20% {
+		opacity: 1;
+	}
+	40% {
+		opacity: 0;
+	}
+	60% {
+		opacity: 0;
+	}
+	80% {
+		opacity: 0;
+	}
+	100% {
+		opacity: 1;
+	}
+}
+
+.input-caret {
+	position: absolute;
+	z-index: 2;
+	left: var(--caret-position);
+	top: 0;
+	width: 0px;
+	height: 70%;
+	border-radius: 0.1vw;
+	margin: 5px 14px;
+	background-color: transparent;
+
+	border: 0.1vw solid #202020;
+	-webkit-border-radius: 0.1vw;
+	-moz-border-radius: 0.1vw;
+	-ms-border-radius: 0.1vw;
+	-o-border-radius: 0.1vw;
+
+	transition: left 50ms ease-in-out, opacity 100ms ease;
+	-webkit-transition: left 50ms ease-in-out, opacity 100ms ease;
+	-moz-transition: left 50ms ease-in-out, opacity 100ms ease;
+	-ms-transition: left 50ms ease-in-out, opacity 100ms ease;
+	-o-transition: left 50ms ease-in-out, opacity 100ms ease;
+}
+
+.input-caret-animate {
+	animation: caret-animate 1s ease infinite;
+	-webkit-animation: caret-animate 1s ease infinite;
+}
+
+.user-text-box {
+
+}
