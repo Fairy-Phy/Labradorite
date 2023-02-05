@@ -22,8 +22,15 @@
 	let is_logging = false;
 	let base_component: Element;
 
-	const state_change = () => {
+	const escape_clock = (e: KeyboardEvent) => {
+		if (is_logging && e.key === "Escape") {
+			is_logging = false;
+		}
+	};
+
+	const state_change = (e?: KeyboardEvent) => {
 		if (!is_logging) {
+			e?.preventDefault();
 			is_logging = true;
 		}
 	};
@@ -35,7 +42,7 @@
 	};
 </script>
 
-<svelte:window on:click={state_change_click} on:keypress={state_change} />
+<svelte:window on:click={state_change_click} on:keypress={state_change} on:keydown={escape_clock} />
 
 <main>
 	<Background bind:config />

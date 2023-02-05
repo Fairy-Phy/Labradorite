@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { onMount } from "svelte";
+    import { expoOut } from "svelte/easing";
 
 	let current_time = new Date();
 	onMount(() => {
@@ -26,10 +27,20 @@
 	$: hour = current_time.getHours().toString().padStart(2, "0");
 	$: min = current_time.getMinutes().toString().padStart(2, "0");
 	$: sec = current_time.getSeconds().toString().padStart(2, "0");
+
+	const clock_out_animation = (node: Element) => {
+		const current_height = Number(getComputedStyle(node).height.replace("px", ""));
+
+		return {
+			duration: 400,
+			easing: expoOut,
+			css: (time: number) => `opacity: ${time}; transform: translate3d(0, ${-current_height + (time * current_height)}px, 0)`
+		};
+	};
 </script>
 
 <div class="clock">
-	<p>
+	<p transition:clock_out_animation>
 		{year}<span>/</span>{month}<span>/</span>{day}<br>
 		{hour}<span class="time-colon">:</span>{min}<span class="time-colon">:</span>{sec}
 	</p>
