@@ -20,7 +20,12 @@
     "typeRoots": [
       "src/types",
       "node_modules/@types"
-    ]
+    ],
+
+    "types": [
+      "svelte"
+    ],
+    "importsNotUsedAsValues": "error",
   },
   "include": ["src/**/*.d.ts", "src/**/*.ts", "src/**/*.js", "src/**/*.svelte"],
   "references": [{ "path": "./tsconfig.node.json" }]

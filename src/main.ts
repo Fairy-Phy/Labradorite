@@ -1,9 +1,8 @@
+import "ress";
 import './font.css';
 import './app.css';
+
 import App from './App.svelte';
-
-import "ress";
-
 import Scrollbar from 'smooth-scrollbar';
 import OverscrollPlugin from 'smooth-scrollbar/plugins/overscroll';
 

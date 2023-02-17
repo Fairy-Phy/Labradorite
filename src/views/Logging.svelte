@@ -2,7 +2,15 @@
     import { quintInOut, quintOut } from "svelte/easing";
 	import TextBoxPlain from "../components/input/TextBoxPlain.svelte";
     import TextBoxSecret from "../components/input/TextBoxSecret.svelte";
+    import UserSelectionList from "../components/input/user-selection-list";
 
+	let user_selection = new UserSelectionList([
+		"User1",
+		"uSer2",
+		"usEr3",
+		"useR4",
+		"user5"
+	]);
 	let final_user_text = "";
 	let user_entered: boolean;
 
@@ -46,9 +54,9 @@
 		<TextBoxSecret bind:is_entered={pass_entered} bind:final_text={final_pass_text} custom_class="pass-text-box" />
 	</div>
 	{:else}
-	<div out:textbox_next_animation={{delay: 0, rev: false}} >
+	<div out:textbox_next_animation={{delay: 0, rev: false}}>
 		<p>Enter the Username</p>
-		<TextBoxPlain bind:is_entered={user_entered} bind:final_text={final_user_text} custom_class="user-text-box" />
+		<TextBoxPlain bind:is_entered={user_entered} bind:user_selection bind:final_text={final_user_text} custom_class="user-text-box" />
 	</div>
 	{/if}
 </div>
