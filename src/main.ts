@@ -1,3 +1,5 @@
+import './lightdm_mock';
+
 import "ress";
 import './font.css';
 import './app.css';
