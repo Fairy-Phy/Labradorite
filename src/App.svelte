@@ -6,7 +6,8 @@
 	import Logging from "./views/Logging.svelte";
 	import delay from "./utils/delay";
 	import { onMount } from "svelte";
-    import PreloadImages from "./utils/PreloadImages";
+	import PreloadImages from "./utils/PreloadImages";
+	import cover from "./cover";
 
 	const image_folder_list = [
 		"./",
@@ -20,25 +21,12 @@
 	onMount(async () => {
 		await (new PreloadImages(background_image_list)).wait_load();
 
-		const cover = document.getElementById("cover");
-		if (cover == null) return;
-
-		cover.classList.remove("index_cover_anim");
-		await delay(500);
-
-		cover.style.display = "none";
+		await cover(false);
 	});
 
 	window.lightdm?.authentication_complete.connect(async () => {
 		if (window.lightdm?.is_authenticated) {
-			const cover = document.getElementById("cover");
-
-			if (cover != null) {
-				cover.style.display = "block";
-				await delay(100);
-				cover.classList.add("index_cover_anim");
-				await delay(500);
-			}
+			await cover(true);
 
 			window.lightdm?.start_session(window.lightdm.default_session);
 		}

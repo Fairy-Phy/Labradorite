@@ -5,25 +5,25 @@ const Ja: Lang = {
 	settings: {
 		title: "設定",
 		main: {
-			title: "メイン設定"
+			title: "メイン設定",
 		},
 		background: {
 			title: "背景の設定",
 			brightness: "明るさ",
 			blur: "ぼかし",
-			image: "画像"
-		}
+			image: "画像",
+		},
 	},
 	power: {
 		sleep: "スリープ",
-		hidenate: "休止",
+		hibernate: "休止",
 		shutdown: "シャットダウン",
-		restart: "再起動"
+		restart: "再起動",
 	},
 	textbox: {
 		user: "ユーザー名を入力",
-		pass: "パスワードを入力"
-	}
+		pass: "パスワードを入力",
+	},
 };
 
 export default Ja;

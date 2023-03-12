@@ -1,35 +1,35 @@
 type MainSettings = {
-    title: string;
+	title: string;
 };
 
 type Background = {
-	title: string,
-	brightness: string,
-	blur: string,
-	image: string
+	title: string;
+	brightness: string;
+	blur: string;
+	image: string;
 };
 
 type Settings = {
-	title: string,
-	main: MainSettings,
-	background: Background
+	title: string;
+	main: MainSettings;
+	background: Background;
 };
 
 type Power = {
-	sleep: string,
-	hidenate: string,
-	shutdown: string,
-	restart: string
+	sleep: string;
+	hibernate: string;
+	shutdown: string;
+	restart: string;
 };
 
 type Textbox = {
-	user: string,
-	pass: string
-}
+	user: string;
+	pass: string;
+};
 
 export type Lang = {
-	override_font_class: string,
-	settings: Settings,
-	power: Power,
-	textbox: Textbox
+	override_font_class: string;
+	settings: Settings;
+	power: Power;
+	textbox: Textbox;
 };
