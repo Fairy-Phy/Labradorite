@@ -1,16 +1,16 @@
 <script lang="ts">
+    import { onMount } from "svelte";
     import { quintInOut, quintOut } from "svelte/easing";
 	import TextBoxPlain from "../components/input/TextBoxPlain.svelte";
     import TextBoxSecret from "../components/input/TextBoxSecret.svelte";
     import UserSelectionList from "../components/input/user-selection-list";
+    import delay from "../utils/delay";
 
-	let user_selection = new UserSelectionList([
-		"User1",
-		"uSer2",
-		"usEr3",
-		"useR4",
-		"user5"
-	]);
+	onMount(() => {
+		window.lightdm?.authenticate(null);
+	});
+
+	let user_selection = new UserSelectionList(window.lightdm?.users.map(v => v.username) ?? []);
 	let final_user_text = "";
 	let user_entered: boolean;
 
@@ -21,7 +21,13 @@
 	$: is_enter_password = user_entered;
 
 	$: if (user_entered && pass_entered) {
-		console.log(final_user_text, final_pass_text);
+		const authed = window.lightdm?.authenticate(final_user_text);
+		console.log("auth:", authed);
+		delay(100).then(() => {
+			const logged = window.lightdm?.respond(final_pass_text);
+			console.log("logged:", logged);
+			pass_entered = logged ?? false;
+		});
 	}
 
 	const textbox_animation = (node: Element, option: {duration: number, delay: number}) => {

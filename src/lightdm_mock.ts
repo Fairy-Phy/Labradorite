@@ -1,4 +1,4 @@
-import {
+import type {
 	Signal as SignalBase,
 	Greeter as GreeterBase,
 	GreeterConfig as GreeterConfigBase,
@@ -151,7 +151,7 @@ const battery = new LightDMBattery("Battery", 85, "Discharging", false, 100, "00
 const ToSignalBase = (v: Signal) => v as unknown as SignalBase;
 const ToSignal = (v: SignalBase) => v as unknown as Signal;
 
-class Greeter extends GreeterBase {
+class Greeter implements GreeterBase {
 	public authentication_complete: SignalBase = ToSignalBase(
 		new Signal("authentication_complete")
 	);
@@ -409,6 +409,19 @@ class Greeter extends GreeterBase {
 		this._reloadWindow(100);
 		return true;
 	}
+
+	get batteryData(): ILightDMBattery {
+		throw new Error("Getter is deprecated.");
+	}
+	brightnessSet(quantity: number): void {
+		throw new Error("Method is deprecated.");
+	}
+	brightnessIncrease(quantity: number): void {
+		throw new Error("Method is deprecated.");
+	}
+	brightnessDecrease(quantity: number): void {
+		throw new Error("Method is deprecated.");
+	}
 }
 
 class GreeterConfig implements GreeterConfigBase {
@@ -442,15 +455,17 @@ class GreeterConfig implements GreeterConfigBase {
 	];
 }
 
-type ContextRecord = Record<string, any>;
 
 class ThemeUtils implements ThemeUtilsBase {
-	public bind_this(context: ContextRecord): ContextRecord {
-		throw new Error("Method not implemented.");
+	public bind_this(context: object): object {
+		throw new Error("Method is deprecated.");
 	}
 
 	public dirlist(path: string, only_images: boolean = true, callback: (args: string[]) => void): void {
-		throw new Error("Method not implemented.");
+		if ("" === path || path.match(/\/\.+(?=\/)/) !== null)
+			throw new Error("not allowed path");
+
+		return callback([]);
 	}
 
 	public dirlist_sync(path: string, only_images: boolean = true): string[] {
@@ -458,11 +473,18 @@ class ThemeUtils implements ThemeUtilsBase {
 	}
 
 	public get_current_localized_date(): string {
-		throw new Error("Method not implemented.");
+		return Intl.DateTimeFormat([""], {
+			day: "2-digit",
+			month: "2-digit",
+			year: "2-digit",
+		}).format(new Date());
 	}
 
 	public get_current_localized_time(): string {
-		throw new Error("Method not implemented.");
+		return Intl.DateTimeFormat([""], {
+			hour: "2-digit",
+			minute: "2-digit",
+		}).format(new Date());
 	}
 
 }
@@ -475,11 +497,26 @@ declare global {
 	}
 };
 
-window.lightdm_debug = typeof window.lightdm === undefined;
+window.lightdm_debug = typeof window.lightdm === "undefined";
 
 if (window.lightdm_debug) {
 	console.log("running with mock data...");
+	window.lightdm = new Greeter();
+	window.greeter_config = new GreeterConfig();
+	window.theme_utils = new ThemeUtils();
+	window._ready_event = new Event("GreeterReady");
 
+	window.addEventListener("DOMContentLoaded", () => {
+		setTimeout(() => {
+			if (window._ready_event) window.dispatchEvent(window._ready_event);
+		}, 500);
+	});
 }
+else {
+	console.log(window.lightdm);
+}
+
+window.lightdm?.show_prompt.connect((m, t) => console.log({ m, t }));
+window.lightdm?.show_message.connect((m, t) => console.log(m, t));
 
 export default {};

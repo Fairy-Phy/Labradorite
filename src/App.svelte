@@ -3,21 +3,60 @@
 	import Clock from "./views/Clock.svelte";
 	import ThemeConfig from "./config/theme-config";
 	import Background from "./components/Background.svelte";
-    import Logging from "./views/Logging.svelte";
+	import Logging from "./views/Logging.svelte";
+	import delay from "./utils/delay";
+	import { onMount } from "svelte";
+    import PreloadImages from "./utils/PreloadImages";
 
-	let config: ThemeConfig = new ThemeConfig([
-		"test-bg.png",
-		"nahi.png",
-		"ki.png",
-		"pink.png",
-		"test-bg.png",
-		"test-bg.png",
-		"test-bg.png",
-		"test-bg.png",
-		"test-bg.png",
-		"test-bg.png",
-		"test-bg.png",
-	]);
+	const image_folder_list = [
+		"./",
+		"./imgs",
+		"/usr/share/backgrounds",
+	];
+	const background_image_list: string[] = [];
+	for (const path of image_folder_list) {
+		background_image_list.push(...(window.theme_utils?.dirlist_sync(path, true) ?? []));
+	}
+	onMount(async () => {
+		await (new PreloadImages(background_image_list)).wait_load();
+
+		const cover = document.getElementById("cover");
+		if (cover == null) return;
+
+		cover.classList.remove("index_cover_anim");
+		await delay(500);
+
+		cover.style.display = "none";
+	});
+
+	window.lightdm?.authentication_complete.connect(async () => {
+		if (window.lightdm?.is_authenticated) {
+			const cover = document.getElementById("cover");
+
+			if (cover != null) {
+				cover.style.display = "block";
+				await delay(100);
+				cover.classList.add("index_cover_anim");
+				await delay(500);
+			}
+
+			window.lightdm?.start_session(window.lightdm.default_session);
+		}
+		else {
+			console.log("Login Failed");
+			const textbox_main_element = document.getElementById("textbox_main");
+			if (textbox_main_element == null) return;
+			textbox_main_element.classList.add("textbox-missing");
+			await delay(250);
+			textbox_main_element.classList.remove("textbox-missing");
+		}
+	});
+
+	let authed_user_background = "";
+	if (window.lightdm?.authentication_user ?? "" !== "") {
+		authed_user_background = window.lightdm?.users.find(v => v.username === window.lightdm?.authentication_user ?? "")?.background ?? "";
+	}
+	let config: ThemeConfig = new ThemeConfig(background_image_list, authed_user_background);
 
 	let is_logging = false;
 	let base_component: Element;
@@ -40,6 +79,7 @@
 			state_change();
 		}
 	};
+
 </script>
 
 <svelte:window on:click={state_change_click} on:keypress={state_change} on:keydown={escape_clock} />

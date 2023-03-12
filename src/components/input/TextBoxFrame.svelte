@@ -1,6 +1,7 @@
 <script lang="ts">
 	import InlineSVG from "svelte-inline-svg";
 	import arrow_right from "../../assets/arrow_right.svg";
+    import delay from "../../utils/delay";
 
 	export let is_entered = false;
 	export let custom_class = "";
@@ -127,8 +128,16 @@
 		return false;
 	};
 
+	let textbox_main_element: HTMLDivElement;
 	export let in_final_text: (text: string) => void;
-	const next_state = () => {
+	const next_state = async () => {
+		if (text_element.innerText === "") {
+			textbox_main_element.classList.add("textbox-missing");
+			await delay(250);
+			textbox_main_element.classList.remove("textbox-missing");
+			return;
+		}
+
 		in_final_text(text_element.innerText);
 		is_entered = true;
 	};
@@ -150,7 +159,7 @@
 </script>
 
 <div class="textbox-frame">
-	<div class="textbox-main {custom_class}">
+	<div class="textbox-main {custom_class}" id="textbox_main" bind:this={textbox_main_element}>
 		<span
 			contenteditable=true
 			on:keydown={key_press_next_state}
