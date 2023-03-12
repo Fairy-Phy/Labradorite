@@ -1,5 +1,6 @@
 <script lang="ts">
-	import type ThemeConfig from "../config/theme-config";
+    import LocalStorage from "../config/LocalStorage";
+	import ThemeConfig from "../config/theme-config";
 	import delay from "../utils/delay";
     import get_color from "../utils/get-color";
 
@@ -32,6 +33,7 @@
 
 	$: if (current_src !== config.selected_image) {
 		change_background(config.selected_image);
+		LocalStorage.set_value(ThemeConfig.selected_image_key, config.selected_image);
 	}
 </script>
 
