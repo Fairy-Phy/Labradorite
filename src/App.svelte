@@ -39,6 +39,9 @@
 			textbox_main_element.classList.remove("textbox-missing");
 		}
 	});
+	window.lightdm?.reset.connect(async () => {
+		await cover(false);
+	});
 
 	let authed_user_background = "";
 	if (window.lightdm?.authentication_user ?? "" !== "") {

@@ -11,5 +11,5 @@
 <div bind:this={base_component}>
 	<Settings bind:config />
 	<Power />
-	<Status screen_light={57} battery={85.1} />
+	<Status />
 </div>
