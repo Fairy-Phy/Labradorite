@@ -23,6 +23,15 @@
 		else if (e.key === "ArrowUp" && user_selection.current_select !== 0) {
 			user_selection.current_select--;
 		}
+		else if (e.key === "Tab") {
+			e.preventDefault();
+			if (user_selection.current_select + 1 === user_selection.sorted_list.length) {
+				user_selection.current_select = 0;
+			}
+			else {
+				user_selection.current_select++;
+			}
+		}
 	};
 </script>
 
