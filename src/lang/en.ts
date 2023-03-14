@@ -1,6 +1,7 @@
 import type { Lang } from "./lang-type";
 
 const En: Lang = {
+	key: "English",
 	override_font_class: "",
 	settings: {
 		title: "Settings",

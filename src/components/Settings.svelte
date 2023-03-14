@@ -52,10 +52,10 @@
 	{#if is_show}
 	<div class="setting-panel" transition:panel_animation bind:this={menu_element}>
 		<SmoothScrollbar custom_class="setting-panel-scroll">
-			<h1>Settings</h1>
-			<h2>Main Settings</h2>
+			<h1>{config.current_lang_data.settings.title}</h1>
+			<h2>{config.current_lang_data.settings.main.title}</h2>
 			<MainSettings bind:main_config={config.main_config} bind:color={config.color_hue} />
-			<h2>Background Settings</h2>
+			<h2>{config.current_lang_data.settings.background.title}</h2>
 			<BackgroundImages bind:config />
 		</SmoothScrollbar>
 		<div class="setting-icon setting-close" in:icon_animation={400} out:icon_animation={0}>

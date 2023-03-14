@@ -1,10 +1,13 @@
 <script lang="ts">
-    import { onMount } from "svelte";
-    import { quintInOut, quintOut } from "svelte/easing";
+	import { onMount } from "svelte";
+	import { quintInOut, quintOut } from "svelte/easing";
 	import TextBoxPlain from "../components/input/TextBoxPlain.svelte";
-    import TextBoxSecret from "../components/input/TextBoxSecret.svelte";
-    import UserSelectionList from "../components/input/user-selection-list";
-    import delay from "../utils/delay";
+	import TextBoxSecret from "../components/input/TextBoxSecret.svelte";
+	import UserSelectionList from "../components/input/user-selection-list";
+	import type ThemeConfig from "../config/theme-config";
+	import delay from "../utils/delay";
+
+	export let theme_config: ThemeConfig;
 
 	onMount(() => {
 		window.lightdm?.authenticate(null);
@@ -56,12 +59,12 @@
 >
 	{#if is_enter_password}
 	<div in:textbox_next_animation={{delay: 250, rev: true}}>
-		<p>Enter the Password</p>
+		<p>{theme_config.current_lang_data.textbox.pass}</p>
 		<TextBoxSecret bind:is_entered={pass_entered} bind:final_text={final_pass_text} custom_class="pass-text-box" />
 	</div>
 	{:else}
 	<div out:textbox_next_animation={{delay: 0, rev: false}}>
-		<p>Enter the Username</p>
+		<p>{theme_config.current_lang_data.textbox.user}</p>
 		<TextBoxPlain bind:is_entered={user_entered} bind:user_selection bind:final_text={final_user_text} custom_class="user-text-box" />
 	</div>
 	{/if}

@@ -6,6 +6,9 @@
 	import restart_icon from "../assets/restart-icon.svg";
 	import { quintOut } from "svelte/easing";
 	import cover from "../cover";
+	import type ThemeConfig from "../config/theme-config";
+
+	export let theme_config: ThemeConfig;
 
 	let is_show = false;
 	let power_icon_element: Element;
@@ -50,6 +53,9 @@
 		await cover(true);
 		window.lightdm?.restart();
 	};
+
+	let add_panel_class: string;
+	$: add_panel_class = theme_config.current_lang_data.override_font_class !== "" ? `${theme_config.current_lang_data.override_font_class}-pp` : "";
 </script>
 
 <svelte:window on:click={non_target_close} />
@@ -57,32 +63,32 @@
 <div class="power">
 	{#if is_show}
 		<div
-			class="power-panel"
+			class={`power-panel ${add_panel_class}`}
 			transition:panel_animation
 			bind:this={panel_element}
 		>
 			{#if window.lightdm?.can_suspend}
 				<div class="sleep-pad" on:click={click_suspend} on:keypress={() => {}}>
 					<InlineSVG src={sleep_icon} />
-					<span>Sleep</span>
+					<span>{theme_config.current_lang_data.power.sleep}</span>
 				</div>
 			{/if}
 			{#if window.lightdm?.can_hibernate}
 				<div on:click={click_hibernate} on:keypress={() => {}}>
 					<InlineSVG src={hide_icon} />
-					<span>hibernate</span>
+					<span>{theme_config.current_lang_data.power.hibernate}</span>
 				</div>
 			{/if}
 			{#if window.lightdm?.can_shutdown}
 				<div on:click={click_shutdown} on:keypress={() => {}}>
 					<InlineSVG src={power_off_button} />
-					<span>Shutdown</span>
+					<span>{theme_config.current_lang_data.power.shutdown}</span>
 				</div>
 			{/if}
 			{#if window.lightdm?.can_restart}
 				<div on:click={click_restart} on:keypress={() => {}}>
 					<InlineSVG src={restart_icon} />
-					<span>Restart</span>
+					<span>{theme_config.current_lang_data.power.restart}</span>
 				</div>
 			{/if}
 		</div>

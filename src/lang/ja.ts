@@ -1,6 +1,7 @@
 import type { Lang } from "./lang-type";
 
 const Ja: Lang = {
+	key: "Japanese",
 	override_font_class: "locale-ja-font",
 	settings: {
 		title: "設定",

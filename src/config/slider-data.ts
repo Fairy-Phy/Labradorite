@@ -5,7 +5,7 @@ export default class SliderData {
 	public readonly min: number;
 	public readonly step: number;
 
-	public readonly title: string;
+	public title: string;
 	public readonly unit: string;
 
 	private readonly key: string;

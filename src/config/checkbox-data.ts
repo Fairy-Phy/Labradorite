@@ -2,7 +2,7 @@ import LocalStorage from './LocalStorage';
 export default class CheckboxData {
 	private _value: boolean;
 
-	public readonly description: string;
+	public description: string;
 
 	private readonly key: string;
 

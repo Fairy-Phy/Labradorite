@@ -1,8 +1,9 @@
 <script lang="ts">
 	import Status from "../components/Status.svelte";
-    import Power from "../components/Power.svelte";
+	import Power from "../components/Power.svelte";
 	import Settings from "../components/Settings.svelte";
-    import type ThemeConfig from "../config/theme-config";
+	import type ThemeConfig from "../config/theme-config";
+	import Language from "../components/Language.svelte";
 
 	export let config: ThemeConfig;
 	export let base_component: Element;
@@ -10,6 +11,9 @@
 
 <div bind:this={base_component}>
 	<Settings bind:config />
-	<Power />
+	<div class="left-bottom-buttons">
+		<Language bind:theme_config={config}/>
+		<Power bind:theme_config={config}/>
+	</div>
 	<Status />
 </div>

@@ -28,6 +28,7 @@ type Textbox = {
 };
 
 export type Lang = {
+	key: string;
 	override_font_class: string;
 	settings: Settings;
 	power: Power;

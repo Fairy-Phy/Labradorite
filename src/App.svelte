@@ -75,11 +75,11 @@
 
 <svelte:window on:click={state_change_click} on:keypress={state_change} on:keydown={escape_clock} />
 
-<main>
+<main class="{config.current_lang_data.override_font_class}">
 	<Background bind:config />
 	<Base bind:config bind:base_component />
 	{#if is_logging}
-		<Logging />
+		<Logging bind:theme_config={config} />
 	{:else}
 		<Clock />
 	{/if}
