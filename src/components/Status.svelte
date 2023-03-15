@@ -31,13 +31,13 @@
 </script>
 
 <div class="status-bar">
-	{#if window.lightdm?.can_access_brightness}
+	{#if window.lightdm?.can_access_brightness && Number.isFinite(screen_light)}
 	<div class="monitor-brightness">
 		<InlineSVG src={screen_light_svg} />
 		<span>{screen_light}%</span>
 	</div>
 	{/if}
-	{#if window.lightdm?.can_access_battery}
+	{#if window.lightdm?.can_access_battery && Number.isFinite(battery)}
 	<div class="battery-percent">
 
 		{#each battery_svgs as data}
