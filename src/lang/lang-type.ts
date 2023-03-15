@@ -1,5 +1,8 @@
 type MainSettings = {
 	title: string;
+	readable_clock: string;
+	logging_blur: string;
+	change_blur: string;
 };
 
 type Background = {

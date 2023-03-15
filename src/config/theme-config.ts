@@ -33,7 +33,7 @@ export default class ThemeConfig {
 			if (find_image_index !== -1)
 				this.selected_index = find_image_index;
 		}
-		this.main_config = new MainConfig();
+		this.main_config = new MainConfig(this.current_lang_data);
 		this.background = new BackgroundConfig(this.current_lang_data);
 		this.images = images;
 
@@ -42,6 +42,7 @@ export default class ThemeConfig {
 
 	public update_lang() {
 		this.background.update_text(this.current_lang_data);
+		this.main_config.update_text(this.current_lang_data);
 	}
 
 	public get selected_image(): string {

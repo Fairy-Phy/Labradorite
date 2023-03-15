@@ -469,7 +469,9 @@ class ThemeUtils implements ThemeUtilsBase {
 	}
 
 	public dirlist_sync(path: string, only_images: boolean = true): string[] {
-		return [];
+		return [
+			"./test-bg.png"
+		];
 	}
 
 	public get_current_localized_date(): string {

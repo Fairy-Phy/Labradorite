@@ -1,6 +1,8 @@
 <script lang="ts">
 	import { onMount } from "svelte";
-    import { expoOut } from "svelte/easing";
+	import { expoOut } from "svelte/easing";
+
+	export let is_normal_clock: boolean;
 
 	let current_time = new Date();
 	onMount(() => {
@@ -39,7 +41,7 @@
 	};
 </script>
 
-<div class="clock">
+<div class="clock {is_normal_clock ? 'normal-clock' : ''}">
 	<p transition:clock_out_animation>
 		{year}<span>/</span>{month}<span>/</span>{day}<br>
 		{hour}<span class="time-colon">:</span>{min}<span class="time-colon">:</span>{sec}

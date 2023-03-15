@@ -7,8 +7,8 @@
 </script>
 
 <div class="bg-settings-panel">
-	<Slider bind:slider_data={config.background.brightness} bind:config />
-	<Slider bind:slider_data={config.background.blur} bind:config />
+	<Slider bind:slider_data={config.background.brightness} bind:color={config.color_hue} />
+	<Slider bind:slider_data={config.background.blur} bind:color={config.color_hue} />
 	<p>{config.current_lang_data.settings.background.image}</p>
 	<div class="bg-panel">
 		{#each Array(config.images.length) as _, i}

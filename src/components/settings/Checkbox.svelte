@@ -1,7 +1,7 @@
 <script lang="ts">
 	import InlineSVG from "svelte-inline-svg";
 	import check_mark_svg from "../../assets/check_stroke.svg";
-    import type CheckboxData from "../../config/checkbox-data";
+	import type CheckboxData from "../../config/checkbox-data";
 
 	export let checkbox_data: CheckboxData;
 	export let color: number;
@@ -13,6 +13,6 @@
 	<input class="checkbox-input" type="checkbox" id={id} bind:checked={checkbox_data.value} />
 	<label class="checkbox-label" style="--checkbox-main-color: hsl({color}, 100%, 80%);" for={id}>
 		<InlineSVG src={check_mark_svg} />
-		<span>{checkbox_data.description} {checkbox_data.value}</span>
+		<span>{checkbox_data.description}</span>
 	</label>
 </div>

@@ -7,6 +7,9 @@ const Ja: Lang = {
 		title: "設定",
 		main: {
 			title: "メイン設定",
+			readable_clock: "時計を標準表示にする",
+			logging_blur: "ログイン時にぼかしを変える",
+			change_blur: "変更後のぼかし"
 		},
 		background: {
 			title: "背景の設定",

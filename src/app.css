@@ -582,6 +582,14 @@ p, .checkbox-label span {
 	bottom: 10px;
 }
 
+.normal-clock p {
+	font-family: Rajdhani, Arial, sans-serif;
+	font-style: normal;
+	font-weight: 500;
+	font-display: swap;
+	letter-spacing: 0.1em;
+}
+
 /* Power */
 
 .power svg {

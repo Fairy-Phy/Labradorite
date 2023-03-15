@@ -7,6 +7,9 @@ const En: Lang = {
 		title: "Settings",
 		main: {
 			title: "Main Settings",
+			readable_clock: "Display normal clock",
+			logging_blur: "Change blur when logging",
+			change_blur: "Changing blur"
 		},
 		background: {
 			title: "Background Settings",

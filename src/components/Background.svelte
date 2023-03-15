@@ -1,10 +1,11 @@
 <script lang="ts">
-    import LocalStorage from "../config/LocalStorage";
+	import LocalStorage from "../config/LocalStorage";
 	import ThemeConfig from "../config/theme-config";
 	import delay from "../utils/delay";
-    import get_color from "../utils/get-color";
+	import get_color from "../utils/get-color";
 
 	export let config: ThemeConfig;
+	export let is_logging: boolean;
 
 	let background_element: HTMLImageElement;
 	let fading_background_element: HTMLImageElement;
@@ -40,11 +41,21 @@
 <div class="bg">
 	<img
 		class:bg-fade-out={set_fade_class}
-		style="--bg-blur: {config.background.blur.value}; --bg-bright: {config.background.brightness.value}; --fade-duration: {fade_duration}ms;"
+		style="--bg-blur: {
+			is_logging && config.main_config.logging_blur_checkbox.value
+				? config.main_config.change_blur_slider.value
+				: config.background.blur.value
+		}; --bg-bright: {config.background.brightness.value}; --fade-duration: {fade_duration}ms;"
 		src={current_src}
 		alt=""
 		bind:this={background_element}
 		on:load={update_color}
 	>
-	<img style="--bg-blur: {config.background.blur.value}; --bg-bright: {config.background.brightness.value};" src="" alt="" bind:this={fading_background_element} hidden>
+	<img
+		style="--bg-blur: {is_logging && config.main_config.logging_blur_checkbox.value
+			? config.main_config.change_blur_slider.value
+			: config.background.blur.value
+		}; --bg-bright: {config.background.brightness.value};"
+		src="" alt="" bind:this={fading_background_element} hidden
+	>
 </div>
