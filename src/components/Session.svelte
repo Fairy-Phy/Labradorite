@@ -4,17 +4,17 @@
 
 
 	let is_show = false;
-	let current_layout = window.lightdm?.layout.description;
+	const session_list = window.lightdm?.sessions ?? [];
 
 	export let theme_config: ThemeConfig;
+
 
 	const toggle_show = () => {
 		is_show = !is_show;
 	};
 
-	const click_button = (lang_key: string) => {
-		theme_config.language_config.current_language = lang_key;
-		theme_config.current_lang_data = theme_config.language_config.get_language();
+	const click_button = (session: string) => {
+		theme_config.select_session = session;
 		toggle_show();
 	};
 
@@ -45,14 +45,14 @@
 <div class="text-list">
 	{#if is_show}
 	<div class="text-list-panel" transition:panel_animation bind:this={panel_element}>
-		{#each theme_config.language_config.lang_key_list as key}
-		<div on:click={() => click_button(key)} on:keypress={() => {}}>
-			{key}
+		{#each session_list as session}
+		<div on:click={() => click_button(session.key)} on:keypress={() => {}}>
+			{session.name}
 		</div>
 		{/each}
 	</div>
 	{/if}
 	<div class="text-list-button" on:click={toggle_show} on:keypress={() => {}} bind:this={button_element}>
-		<p>{theme_config.language_config.current_language}({current_layout})</p>
+		<p>{theme_config.select_session ?? "No select"}</p>
 	</div>
 </div>

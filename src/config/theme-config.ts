@@ -16,6 +16,8 @@ export default class ThemeConfig {
 	public language_config: LangConfig;
 	private _current_lang_data: Lang;
 
+	public select_session: string | null;
+
 	public constructor(images: string[], default_background: string) {
 		this.language_config = new LangConfig();
 		this._current_lang_data = this.language_config.get_language();
@@ -34,6 +36,8 @@ export default class ThemeConfig {
 		this.main_config = new MainConfig();
 		this.background = new BackgroundConfig(this.current_lang_data);
 		this.images = images;
+
+		this.select_session = window.lightdm?.default_session ?? null;
 	}
 
 	public update_lang() {

@@ -989,34 +989,34 @@ p.user-list-content:hover, .user-list-content-selected {
 	-o-transition: opacity 500ms ease-in-out;
 }
 
-/* Language */
+/* Language / Session */
 
-.language-button {
+.text-list-button {
 	margin: 24px;
 	padding: 5px;
 
 	text-align: center;
 }
 
-.language-button:hover {
+.text-list-button:hover {
 	background-color: #fff4;
 }
 
-.language-panel {
+.text-list-panel {
 	position: absolute;
 	overflow: hidden;
 
-	left: 25px;
+	margin-left: 24px;
 	bottom: 80px;
 
-	width: 160px;
+	min-width: 160px;
 	background-color: #323232;
 }
 
-.language-panel div {
+.text-list-panel div {
 	padding: 9px 10px;
 }
 
-.language-panel div:hover {
+.text-list-panel div:hover {
 	background-color: #505050;
 }
