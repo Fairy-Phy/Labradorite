@@ -211,3 +211,8 @@ $RECYCLE.BIN/
 # End of https://www.toptal.com/developers/gitignore/api/windows,git,node,svelte,visualstudiocode
 
 public/test*
+public/*.png
+public/fonts/*.ttf
+public/fonts/*.otf
+
+package-lock.json
