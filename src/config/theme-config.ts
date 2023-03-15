@@ -22,16 +22,16 @@ export default class ThemeConfig {
 		this.language_config = new LangConfig();
 		this._current_lang_data = this.language_config.get_language();
 
-		if (default_background !== "") {
-			this.selected_index = images.findIndex(v => v === default_background);
+		const get_storage_image = LocalStorage.get_value(ThemeConfig.selected_image_key);
+		if (get_storage_image != null) {
+			const search_index = images.findIndex((v) => v === get_storage_image);
+			if (search_index !== -1)
+				this.selected_index = search_index;
 		}
 		else {
-			const image = LocalStorage.get_value(ThemeConfig.selected_image_key);
-			if (image != null) {
-				const search_index = images.findIndex((v) => v === image);
-				if (search_index !== -1)
-					this.selected_index = search_index;
-			}
+			const find_image_index = images.findIndex(v => v === default_background);
+			if (find_image_index !== -1)
+				this.selected_index = find_image_index;
 		}
 		this.main_config = new MainConfig();
 		this.background = new BackgroundConfig(this.current_lang_data);
