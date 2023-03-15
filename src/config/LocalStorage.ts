@@ -1,4 +1,4 @@
-const browser = import.meta.env?.SSR ?? typeof window !== "undefined";
+const browser = typeof window !== "undefined";
 
 export default class LocalStorage {
 	public static get_value(key: string): string | null {
