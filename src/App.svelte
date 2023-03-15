@@ -28,7 +28,7 @@
 		if (window.lightdm?.is_authenticated) {
 			await cover(true);
 
-			window.lightdm?.start_session(window.lightdm.default_session);
+			window.lightdm?.start_session(config.select_session);
 		}
 		else {
 			console.log("Login Failed");
