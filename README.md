@@ -35,6 +35,22 @@ theme: Labradorite
 
 ## Screenshots
 
+### Main
+
+![image](./screenshot/main.png)
+
+### Settings
+
+![image](./screenshot/settings.png)
+
+### Username
+
+![image](./screenshot/input_user.png)
+
+### Password
+
+![image](./screenshot/input_pass.png)
+
 ## License
 
 This source code are licensed under the [Apache License 2.0](./LICENSE).
